@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" style="-fx-background-color: #fdc029;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Produto.ProdutoController">
+   <children>
+      <TextField fx:id="txtIdProduto" layoutX="63.0" layoutY="122.0" prefHeight="25.0" prefWidth="97.0" />
+      <Text layoutX="246.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Text>
+      <Text layoutX="63.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código" />
+      <TextField fx:id="txtProduto" disable="true" layoutX="246.0" layoutY="122.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="txtDescricao" disable="true" layoutX="62.0" layoutY="208.0" prefHeight="25.0" prefWidth="335.0" />
+      <Text layoutX="62.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição do produto">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Text>
+      <Button fx:id="btnRegistrar" disable="true" layoutX="143.0" layoutY="361.0" mnemonicParsing="false" onAction="#AlterarProduto" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #000;" text="Alterar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <TextField fx:id="txtPrecoVenda" disable="true" layoutX="490.0" layoutY="121.0" prefHeight="25.0" prefWidth="97.0" />
+      <Text layoutX="490.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço de venda" />
+      <Button fx:id="btnCancelar" disable="true" layoutX="397.0" layoutY="362.0" mnemonicParsing="false" onAction="#LimparTelaAlterar" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #000;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnBuscar" layoutX="176.0" layoutY="122.0" mnemonicParsing="false" onAction="#BuscarId" style="-fx-background-color: #000;" text="Buscar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <TextField fx:id="txtTipoProduto" disable="true" layoutX="439.0" layoutY="208.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </TextField>
+      <Text layoutX="439.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo do Produto">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alterar Produto">
+         <font>
+            <Font name="SansSerif Regular" size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="61.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade no Estoque">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtQtdTotal" disable="true" layoutX="61.0" layoutY="287.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtQtdVendida" disable="true" layoutX="372.0" layoutY="286.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </TextField>
+      <Text layoutX="372.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade Vendida">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

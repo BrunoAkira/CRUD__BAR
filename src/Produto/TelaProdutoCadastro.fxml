@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" style="-fx-background-color: #fdc029;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Produto.ProdutoController">
+   <children>
+      <TextField fx:id="txtIdProduto" disable="true" layoutX="63.0" layoutY="122.0" prefHeight="25.0" prefWidth="97.0" />
+      <Text layoutX="246.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Text>
+      <Text layoutX="63.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código" />
+      <TextField fx:id="txtProduto" layoutX="246.0" layoutY="122.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="txtDescricao" layoutX="62.0" layoutY="208.0" prefHeight="25.0" prefWidth="335.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <Text layoutX="62.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição do produto">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Text>
+      <Button fx:id="btnRegistrar" layoutX="143.0" layoutY="273.0" mnemonicParsing="false" onAction="#CadastrarProduto" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #000;" text="Registrar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <TextField fx:id="txtPrecoVenda" layoutX="491.0" layoutY="121.0" prefHeight="25.0" prefWidth="97.0" />
+      <Text layoutX="490.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço de venda" />
+      <Button fx:id="btnCancelar" layoutX="397.0" layoutY="273.0" mnemonicParsing="false" onAction="#LimparTela" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #000;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnBuscar" disable="true" layoutX="176.0" layoutY="122.0" mnemonicParsing="false" onAction="#BuscarId" style="-fx-background-color: #000;" text="Buscar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <TextField fx:id="txtTipoProduto" layoutX="439.0" layoutY="208.0" prefHeight="25.0" prefWidth="150.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </TextField>
+      <Text layoutX="439.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo do Produto">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Produto">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

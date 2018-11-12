@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fdc029;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.LoginController">
+   <children>
+      <TextField fx:id="txtLogin" layoutX="50.0" layoutY="139.0" prefHeight="25.0" prefWidth="200.0" promptText="Informe seu login">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="txtSenha" layoutX="50.0" layoutY="188.0" prefHeight="25.0" prefWidth="200.0" promptText="Informe sua senha">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <Button fx:id="btnLogin" layoutX="50.0" layoutY="243.0" mnemonicParsing="false" onAction="#AbrirPrograma" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #000;" text="Entrar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <ImageView fitHeight="274.0" fitWidth="283.0" layoutX="282.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/bar.png" />
+         </image></ImageView>
+      <Text fontSmoothingType="LCD" layoutX="78.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+         <font>
+            <Font name="SansSerif Bold Italic" size="53.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblErro" fill="#ed0707" fontSmoothingType="LCD" layoutX="50.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario ou senha invalidos" visible="false">
+         <font>
+            <Font name="SansSerif Bold Italic" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

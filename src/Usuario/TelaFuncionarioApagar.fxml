@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Usuario.UsuarioController">
+   <children>
+      <Label layoutX="68.0" layoutY="39.0" text="Código">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <TextField fx:id="txtIdFuncionario" layoutX="68.0" layoutY="56.0" prefHeight="25.0" prefWidth="83.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <Button fx:id="btnBuscar" layoutX="190.0" layoutY="56.0" mnemonicParsing="false" onAction="#BuscarId" style="-fx-background-color: #000;" text="Buscar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <Label layoutX="304.0" layoutY="39.0" text="Nome">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <TextField fx:id="txtNome" disable="true" layoutX="305.0" layoutY="56.0" prefHeight="25.0" prefWidth="267.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <DatePicker fx:id="txtNasc" disable="true" layoutX="67.0" layoutY="124.0" />
+      <Label layoutX="68.0" layoutY="107.0" text="Data de Nascimento">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="305.0" layoutY="107.0" text="Cargo">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <TextField fx:id="txtCargo" disable="true" layoutX="305.0" layoutY="124.0" prefHeight="25.0" prefWidth="267.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <Label layoutX="67.0" layoutY="165.0" text="RG">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="307.0" layoutY="165.0" text="Data de admissão">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="67.0" layoutY="237.0" text="Sexo">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="307.0" layoutY="235.0" text="Usuário">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="451.0" layoutY="233.0" text="Senha">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <TextField fx:id="txtRG" disable="true" layoutX="67.0" layoutY="182.0" prefHeight="25.0" prefWidth="174.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <RadioButton fx:id="rbFem" disable="true" layoutX="167.0" layoutY="256.0" mnemonicParsing="false" text="Masculino">
+         <toggleGroup>
+            <ToggleGroup fx:id="Sexo" />
+         </toggleGroup>
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></RadioButton>
+      <TextField fx:id="txtUsuario" disable="true" layoutX="301.0" layoutY="255.0" prefHeight="25.0" prefWidth="133.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="txtSenha" disable="true" layoutX="451.0" layoutY="253.0" prefHeight="25.0" prefWidth="133.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></TextField>
+      <Button fx:id="txtRegistrar" disable="true" layoutX="184.0" layoutY="338.0" mnemonicParsing="false" onAction="#ApagarUsuario" prefWidth="65.0" style="-fx-background-color: #000;" text="Deletar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <Button fx:id="txtCancelar" disable="true" layoutX="408.0" layoutY="338.0" mnemonicParsing="false" onAction="#LimparTelaAlterar" style="-fx-background-color: #000;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Button>
+      <DatePicker fx:id="txtDataAdmissao" disable="true" layoutX="307.0" layoutY="182.0" />
+      <RadioButton fx:id="rbMasc" disable="true" layoutX="69.0" layoutY="256.0" mnemonicParsing="false" text="Feminino" toggleGroup="$Sexo">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></RadioButton>
+      <Label layoutY="-1.0" text="Deletar Usuario">
+         <font>
+            <Font name="SansSerif Regular" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

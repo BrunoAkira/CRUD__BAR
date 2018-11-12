@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.6065" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Venda.VendaController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="282.0" style="-fx-background-color: #fdc029;">
+         <children>
+            <TableView fx:id="tbProduto" disable="true" layoutY="124.0" prefHeight="256.0" prefWidth="384.0" style="-fx-background-color: #fdc029;">
+              <columns>
+                <TableColumn prefWidth="124.0" text="Produto" />
+                <TableColumn prefWidth="74.0" text="Preço Unit" />
+                  <TableColumn prefWidth="48.0" text="Qtd" />
+                  <TableColumn prefWidth="75.0" text="Apagar" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnAddProduto" disable="true" layoutX="179.0" layoutY="90.0" mnemonicParsing="false" onAction="#addTable" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #000;" text="Adicionar" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Button>
+            <ComboBox fx:id="cbProduto" disable="true" layoutX="14.0" layoutY="40.0" prefWidth="150.0" />
+            <Label disable="true" layoutX="14.0" layoutY="23.0" text="Produtos">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Label>
+            <Label layoutX="83.0" layoutY="6.0" text="PRODUTOS DA VENDA">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Label>
+            <TextField fx:id="txtQtd" disable="true" layoutX="14.0" layoutY="90.0" prefHeight="25.0" prefWidth="48.0">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></TextField>
+            <Label layoutX="14.0" layoutY="73.0" text="Quantidade">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnRemoveProduto" disable="true" layoutX="290.0" layoutY="90.0" mnemonicParsing="false" onAction="#RemoveTable" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #000;" text="Remover" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #fdc029;">
+         <children>
+            <Label layoutX="73.0" layoutY="6.0" text="DETALHES DA VENDA">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Label>
+            <Label disable="true" layoutX="20.0" layoutY="133.0" text="Comanda :  " />
+            <TextField fx:id="txtComanda" disable="true" layoutX="95.0" layoutY="129.0" />
+            <TextField fx:id="txtData" disable="true" layoutX="95.0" layoutY="169.0" />
+            <Label disable="true" layoutX="20.0" layoutY="173.0" text="Data : " />
+            <Label layoutX="36.0" layoutY="182.0" />
+            <TextField fx:id="txtTotal" disable="true" layoutX="95.0" layoutY="210.0" />
+            <Label disable="true" layoutX="23.0" layoutY="214.0" text="Total : " />
+            <Button fx:id="btnRegistar" disable="true" layoutX="40.0" layoutY="291.0" mnemonicParsing="false" onAction="#DeletarVenda" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #000;" text="Deletar" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Button>
+            <Button fx:id="btnCancelar" disable="true" layoutX="155.0" layoutY="291.0" mnemonicParsing="false" onAction="#LimparTelaAlterar" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #000;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Button>
+            <Label layoutX="26.0" layoutY="30.0" text="N° Venda  " />
+            <TextField fx:id="txtIdVenda" layoutX="28.0" layoutY="47.0" prefHeight="25.0" prefWidth="48.0">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></TextField>
+            <Button fx:id="btnBuscar" layoutX="103.0" layoutY="47.0" mnemonicParsing="false" onAction="#BuscarId" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #000;" text="Buscar" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Button>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

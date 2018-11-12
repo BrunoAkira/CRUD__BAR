@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fdc029;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="50.0" layoutY="14.0" text="Mês">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font></Label>
+      <ComboBox layoutX="50.0" layoutY="31.0" prefWidth="150.0" />
+      <LineChart layoutX="50.0" layoutY="64.0" legendSide="RIGHT" prefHeight="334.0" prefWidth="500.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM">
+               <tickLabelFont>
+                  <Font size="10.0" />
+               </tickLabelFont></CategoryAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT">
+               <tickLabelFont>
+                  <Font name="SansSerif Regular" size="10.0" />
+               </tickLabelFont></NumberAxis>
+        </yAxis>
+      </LineChart>
+      <Label layoutX="289.0" layoutY="56.0" text="Lucro mensal">
+         <font>
+            <Font name="SansSerif Regular" size="18.0" />
+         </font></Label>
+   </children>
+</Pane>

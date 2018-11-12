@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: #fdc029;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Padrao.PadraoController">
+   <top>
+      <Pane prefHeight="96.0" prefWidth="900.0" style="-fx-background-color: #000;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="94.0" fitWidth="195.0" layoutX="28.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/logo1.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnUsuario" layoutX="259.0" layoutY="12.0" mnemonicParsing="false" onAction="#AbrirTelaUsuario" prefHeight="68.0" prefWidth="64.0" style="-fx-background-color: #000; -fx-border-color: #000; -fx-border-width: 0;">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/aaa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnLote" layoutX="385.0" layoutY="-1.0" mnemonicParsing="false" onAction="#AbrirTelaLote" prefHeight="91.0" prefWidth="58.0" style="-fx-background-color: #000;">
+               <graphic>
+                  <ImageView fitHeight="91.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/storage.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnVenda" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="592.0" layoutY="-1.0" mnemonicParsing="false" onAction="#AbrirTelaVenda" prefHeight="84.0" prefWidth="83.0" style="-fx-background-color: #000;">
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="86.0" onMouseClicked="#AbrirTelaVenda" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/carrinho%20venda.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnGrafico" contentDisplay="GRAPHIC_ONLY" layoutX="717.0" layoutY="4.0" mnemonicParsing="false" onAction="#AbrirTelaGrafico" style="-fx-background-color: #000;">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="71.0" onMouseClicked="#AbrirTelaGrafico" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/graph.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="btnSobre" layoutX="838.0" layoutY="14.0" mnemonicParsing="false" onAction="#AbrirTelaSobre" style="-fx-background-color: #000;">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="80.0" onMouseClicked="#AbrirTelaSobre" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/negativo-186-214-81-126-203243.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text fill="#fcfafa" fontSmoothingType="LCD" layoutX="276.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#fcfafa" fontSmoothingType="LCD" layoutX="410.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lote">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#fcfafa" fontSmoothingType="LCD" layoutX="626.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Venda">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#fcfafa" fontSmoothingType="LCD" layoutX="738.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gráficos">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#fcfafa" fontSmoothingType="LCD" layoutX="859.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sobre">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnProduto" layoutX="500.0" layoutY="-1.0" mnemonicParsing="false" onAction="#AbrirTelaProduto" prefHeight="91.0" prefWidth="58.0" style="-fx-background-color: #000;">
+               <graphic>
+                  <ImageView fitHeight="91.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/produto.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text fill="#fcfafa" fontSmoothingType="LCD" layoutX="515.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <Pane fx:id="PaneGuia" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnCadastro" layoutY="74.0" mnemonicParsing="false" onAction="#AbrirTelaCadastro" style="-fx-background-color: #000;" text=" " textFill="#fdc029">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAltera" layoutY="124.0" mnemonicParsing="false" onAction="#AbrirTelaAltera" style="-fx-background-color: #000;" text=" " textFill="#fdc029">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnApaga" layoutY="174.0" mnemonicParsing="false" onAction="#AbrirTelaApaga" style="-fx-background-color: #000;" text=" " textFill="#fdc029">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSair" layoutX="57.0" layoutY="398.0" mnemonicParsing="false" onAction="#Sair" style="-fx-background-color: #000;" text="Sair" textFill="#fdc029" visible="false">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnConsulta" layoutY="224.0" mnemonicParsing="false" onAction="#AbrirTelaConsulta" style="-fx-background-color: #000;" text=" " textFill="#fdc029">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>
