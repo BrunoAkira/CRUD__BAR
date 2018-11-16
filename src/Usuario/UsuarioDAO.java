@@ -19,7 +19,7 @@ public class UsuarioDAO {
 	}
 
 	public boolean VerificaLogin(String usuario, String senha) {
-		
+		connection = DbUtil.getConnection();
         try {     
    
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -44,7 +44,7 @@ public class UsuarioDAO {
 	}
 	
 	public void AddUsuario(UsuarioVO u) {
-		
+		connection = DbUtil.getConnection();
 		try {
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -63,6 +63,7 @@ public class UsuarioDAO {
 			
 			preparedStatement.execute();
 			
+			connection.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +71,7 @@ public class UsuarioDAO {
 	} //addUsuario
 	
 	public void UpdateUsuario(UsuarioVO u) {
-		
+		connection = DbUtil.getConnection();
 		try {
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -98,6 +99,8 @@ public class UsuarioDAO {
 			
 			preparedStatement.execute();
 			
+			connection.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,7 +108,7 @@ public class UsuarioDAO {
 	} //UpdateUsuario
 	
 	public void DeleteUsuario(int id) {
-		
+		connection = DbUtil.getConnection();
 		try {
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -116,6 +119,8 @@ public class UsuarioDAO {
 			
 			preparedStatement.execute();
 			
+			connection.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,7 +128,7 @@ public class UsuarioDAO {
 	} //DeleteUsuario
 	
 	public UsuarioVO BuscarUsuario(int id) {
-
+		connection = DbUtil.getConnection();
 		try {     
 				   
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -157,7 +162,8 @@ public class UsuarioDAO {
 	} //BuscarUsuario
 	
 	public ObservableList<UsuarioVO> ConsultaTudo(String filtro, String tipo) throws SQLException {
-        try {
+		connection = DbUtil.getConnection();
+		try {
         	ObservableList<UsuarioVO> Lista = FXCollections.observableArrayList();
             
 			PreparedStatement preparedStatement = connection.prepareStatement(

@@ -177,6 +177,54 @@ public class UsuarioController implements Initializable{
 			return false;
 		}
 		
+		if(txtNasc.getValue() == null)
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo da Data de Nascimento");
+			alert.setContentText("O campo precisa estar preenchido");
+
+			alert.showAndWait();
+		
+			return false;
+		}
+		
+		if(txtNasc.getValue().isAfter(LocalDate.now()))
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo da Data de Nascimento");
+			alert.setContentText("O campo precisa estar preenchido com uma data válida");
+
+			alert.showAndWait();
+		
+			return false;
+		}
+		
+		if(txtDataAdmissao.getValue() == null)
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo da Data de Admissão");
+			alert.setContentText("O campo precisa estar preenchido");
+
+			alert.showAndWait();
+		
+			return false;
+		}
+		
+		if(txtDataAdmissao.getValue().isAfter(LocalDate.now()))
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo da Data de Admissão");
+			alert.setContentText("O campo precisa estar preenchido com uma data válida");
+
+			alert.showAndWait();
+		
+			return false;
+		}
+		
     	return true;
     }
     
@@ -191,9 +239,7 @@ public class UsuarioController implements Initializable{
     		sexo = "M";
 
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    	
-    	
-    	
+  	
     	String admin =  String.valueOf((txtDataAdmissao.getValue()));
     	try {
 			Date d = sdf.parse(admin);

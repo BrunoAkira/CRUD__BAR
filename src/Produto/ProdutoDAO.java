@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import Padrao.DbUtil;
 
+
 public class ProdutoDAO {
 
 	private static Connection connection;
@@ -34,6 +35,8 @@ public class ProdutoDAO {
 			
 			
 			preparedStatement.execute();
+			
+			connection.commit();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +69,8 @@ public void UpdateProduto(ProdutoVO p) {
 			
 			preparedStatement.execute();
 			
+			connection.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -76,13 +81,23 @@ public void UpdateProduto(ProdutoVO p) {
 public void DeleteProduto(ProdutoVO p) {
 	
 		try {
-		
 			PreparedStatement preparedStatement = connection.prepareStatement(
+					"Delete from Lote where idProd = ?;");
+			
+			preparedStatement.setInt(1, p.getId());
+		
+			
+			preparedStatement.execute();
+			
+			
+		    preparedStatement = connection.prepareStatement(
 				" Delete from Produto where ID = ?");
 
 			preparedStatement.setInt(1, p.getId());
 
 			preparedStatement.execute();
+			
+			connection.commit();
 		
 		} catch (Exception e) {
 			e.printStackTrace();

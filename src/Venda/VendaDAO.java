@@ -31,6 +31,7 @@ public void AddVenda(VendaVO v) {
 			
 			preparedStatement.execute();
 			
+			
 			preparedStatement = connection.prepareStatement(" SELECT IDENT_CURRENT('venda')");
 			int id = 0;
 			ResultSet rs = preparedStatement.executeQuery();
@@ -74,6 +75,7 @@ public void UpdateVenda(VendaVO v) {
 		preparedStatement.setInt(4, v.getId());
 				
 		preparedStatement.execute();
+		
 		
 		ItemVendaDAO ivDAO = new ItemVendaDAO();
 		for(ItemVendaVO iv : v.lista)

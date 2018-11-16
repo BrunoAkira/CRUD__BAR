@@ -5,7 +5,7 @@ use Bar;
 set dateformat dmy;
 insert into Usuario(Nome,DataNascimento,DataAdmissao,Cargo,RG,Sexo,Login,Senha)
   values('João','21/05/1998','15/06/2018','Faxineiro','38.534.712-1','M','Login','Senha');
-
+  select * from Usuario
 create table Produto(
 ID int primary key identity,
 NomeProduto varchar(50) unique not null,

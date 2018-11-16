@@ -29,6 +29,8 @@ public void AddItemVenda(ItemVendaVO iv) {
 			
 			preparedStatement.execute();
 			
+			connection.commit();
+			
 		} catch (Exception e) {
 			try {
 				connection.rollback();
@@ -51,6 +53,8 @@ public void UpdateItemVenda(ObservableList<ItemVendaVO> lista) {
 		preparedStatement.setInt(1, lista.get(0).getIdvenda());
 		
 		preparedStatement.execute();
+		
+		connection.commit();
 		
 		for(ItemVendaVO iv : lista)
 		{	
@@ -78,6 +82,8 @@ public void DeleteItemVenda(ItemVendaVO iv) {
 		preparedStatement.setInt(1, iv.getIdvenda());
 
 		preparedStatement.execute();
+		
+		connection.commit();
 
 	} catch (Exception e) {
 			try {
