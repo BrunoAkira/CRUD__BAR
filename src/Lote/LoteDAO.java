@@ -1,5 +1,6 @@
 package Lote;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ public class LoteDAO {
 			preparedStatement.setString(2, l.getFornecedor());
 			preparedStatement.setString(3, l.getDataCompra());
 			preparedStatement.setInt(4, l.getQuantidade());
-			preparedStatement.setFloat(5, l.getCustoUnit());
+			preparedStatement.setBigDecimal(5, l.getCustoUnit());
 
 			preparedStatement.execute();
 
@@ -54,7 +55,7 @@ public class LoteDAO {
 			preparedStatement.setString(2, l.getFornecedor());
 			preparedStatement.setString(3, l.getDataCompra());
 			preparedStatement.setInt(4, l.getQuantidade());
-			preparedStatement.setFloat(5, l.getCustoUnit());
+			preparedStatement.setBigDecimal(5, l.getCustoUnit());
 			preparedStatement.setInt(6, l.getIdLote());
 
 			preparedStatement.execute();
@@ -108,7 +109,7 @@ public class LoteDAO {
 				String fornecedor = rs.getString(3);
 				String dataCompra = rs.getString(4);
 				int quantidade = rs.getInt(5);
-				float custoUnit = rs.getFloat(6);
+				BigDecimal custoUnit = rs.getBigDecimal(6);
 
 				LoteVO aux = new LoteVO(idLote, idProd, fornecedor, dataCompra, quantidade, custoUnit);
 
@@ -146,7 +147,7 @@ public class LoteDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				LoteVO aux = new LoteVO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5),
-						rs.getFloat(6));
+						rs.getBigDecimal(6));
 				aux.setNomeProd(rs.getString(7));
 				Lista.add(aux);
 			}

@@ -1,5 +1,6 @@
 package Venda;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ public void AddVenda(VendaVO v) {
 			
 			preparedStatement.setInt(1, v.getComanda());
 			preparedStatement.setString(2, v.getData());
-			preparedStatement.setFloat(3, v.getPrecoTotal());			
+			preparedStatement.setBigDecimal(3, v.getPrecoTotal());			
 			
 			preparedStatement.execute();
 			
@@ -71,7 +72,7 @@ public void UpdateVenda(VendaVO v) {
 
 		preparedStatement.setInt(1, v.getComanda());
 		preparedStatement.setString(2, v.getData());
-		preparedStatement.setFloat(3,v.getPrecoTotal());
+		preparedStatement.setBigDecimal(3,v.getPrecoTotal());
 		preparedStatement.setInt(4, v.getId());
 				
 		preparedStatement.execute();
@@ -139,7 +140,7 @@ public VendaVO BuscarVenda(VendaVO v) {
         		int id = rs.getInt(1); 
         		int comanda = rs.getInt(2); 
         		String Data = rs.getString(3);
-        		float PrecoTotal = rs.getFloat(4);
+        		BigDecimal PrecoTotal = rs.getBigDecimal(4);
 
         		VendaVO aux = new VendaVO(id, comanda, Data,PrecoTotal); 
         		ItemVendaVO iv = new ItemVendaVO();
@@ -184,7 +185,7 @@ public ObservableList<VendaVO> ConsultarTudo(String filtro, String tipo) {
 		}
     	ResultSet rs = preparedStatement.executeQuery();
     	while (rs.next()) {
-    		VendaVO aux = new VendaVO(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getFloat(4));
+    		VendaVO aux = new VendaVO(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getBigDecimal(4));
     		
     		ItemVendaDAO ivDAO = new ItemVendaDAO();
     		ItemVendaVO iv = new ItemVendaVO();

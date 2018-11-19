@@ -1,11 +1,13 @@
 package Venda;
 
+import java.math.BigDecimal;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class VendaVO {
 
-	public VendaVO(int id, int comanda, String data, float precoTotal) {
+	public VendaVO(int id, int comanda, String data, BigDecimal precoTotal) {
 		Id = id;
 		Comanda = comanda;
 		Data = data;
@@ -19,7 +21,7 @@ public class VendaVO {
 	private int Id;
 	private int Comanda;
 	private String Data;
-	private float PrecoTotal; 
+	private BigDecimal PrecoTotal; 
 	
 	ObservableList<ItemVendaVO> lista = FXCollections.observableArrayList();
 
@@ -47,11 +49,11 @@ public class VendaVO {
 		Data = data;
 	}
 
-	public float getPrecoTotal() {
+	public BigDecimal getPrecoTotal() {
 		return PrecoTotal;
 	}
 
-	public void setPrecoTotal(float precoTotal) {
+	public void setPrecoTotal(BigDecimal precoTotal) {
 		PrecoTotal = precoTotal;
 	}
 }

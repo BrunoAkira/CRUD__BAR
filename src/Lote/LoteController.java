@@ -1,5 +1,6 @@
 package Lote;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -7,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Produto.ProdutoDAO;
@@ -18,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -63,6 +66,14 @@ public class LoteController implements Initializable {
 	public static Integer TryParseInt(String someText) {
 		try {
 			return Integer.parseInt(someText);
+		} catch (NumberFormatException ex) {
+			return null;
+		}
+	}
+	
+	public static Float TryParseFloat(String someText) {
+		try {
+			return Float.valueOf(someText);
 		} catch (NumberFormatException ex) {
 			return null;
 		}
@@ -144,6 +155,9 @@ public class LoteController implements Initializable {
 			return false;
 		}
 
+		System.out.println(LocalDate.now());
+		System.out.println(txtData.getValue());
+		
 		if (txtData.getValue() == null) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
@@ -176,7 +190,9 @@ public class LoteController implements Initializable {
 
 			return false;
 		}
-		if (TryParseInt(txtCustounit.getText()) == null) {
+		txtCustounit.setText(txtCustounit.getText().replace(',', '.'));
+		
+		if (TryParseFloat(txtCustounit.getText()) == null) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro no campo de preço de compra");
@@ -218,7 +234,7 @@ public class LoteController implements Initializable {
 
 		LoteVO l = new LoteVO(id, idprod, txtFornecedor.getText(), data,
 				Integer.parseInt(txtQtd.getText()),
-				Float.parseFloat(txtCustounit.getText()));
+				BigDecimal.valueOf(Double.parseDouble(txtCustounit.getText())));
 
 		return l;
 	}
@@ -271,6 +287,10 @@ public class LoteController implements Initializable {
 			btnRegistrar.setDisable(false);
 
 			btnCancelar.setDisable(false);
+			
+			btnLessqtd.setDisable(false);
+			
+			btnAddqtd.setDisable(false);
 		}
 	}
 
@@ -282,6 +302,12 @@ public class LoteController implements Initializable {
 			lotDAO.AddLote(l);
 
 			LimparTela(event);
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setContentText("Registro bem sucedido");
+
+			alert.showAndWait();
 		}
 	}
 
@@ -293,12 +319,23 @@ public class LoteController implements Initializable {
 			lotDAO.UpdateLote(l);
 
 			LimparTelaAlterar(event);
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setContentText("Alteração bem sucedido");
+
+			alert.showAndWait();
 		}
 	}
 
 	@FXML
 	void ApagarLote(ActionEvent event) {
-		if (VerificaTela("Deletar")) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(null);
+		alert.setContentText("Deseja realmente deletar o registro?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
 			LoteVO l = GerarLote();
 
 			lotDAO.DeleteLote(l);

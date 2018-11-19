@@ -1,5 +1,7 @@
 package Venda;
 
+import java.math.BigDecimal;
+
 public class ItemVendaVO {
 
 	public ItemVendaVO(int id, int idvenda, int idprod, int qtd) {
@@ -17,7 +19,7 @@ public class ItemVendaVO {
 	private int qtd;
 	
 	private String nomeProduto;
-	private float precoUnit;
+	private BigDecimal precoUnit;
 	
 	public String getNomeProduto() {
 		return nomeProduto;
@@ -27,11 +29,11 @@ public class ItemVendaVO {
 		this.nomeProduto = nomeProduto;
 	}
 
-	public float getPrecoUnit() {
+	public BigDecimal getPrecoUnit() {
 		return precoUnit;
 	}
 
-	public void setPrecoUnit(float precoUnit) {
+	public void setPrecoUnit(BigDecimal precoUnit) {
 		this.precoUnit = precoUnit;
 	}
 

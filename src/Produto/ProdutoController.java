@@ -1,9 +1,13 @@
 package Produto;
 
+import java.math.BigDecimal;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
@@ -49,6 +53,14 @@ public class ProdutoController {
 		}
 	}
 
+	public static Float TryParseFloat(String someText) {
+		try {
+			return Float.valueOf(someText);
+		} catch (NumberFormatException ex) {
+			return null;
+		}
+	}
+	
 	boolean VerificaTela(String Modo) {
 		if (Modo != "Cadastrar") {
 			if (txtIdProduto.getText().trim().isEmpty()) {
@@ -73,10 +85,56 @@ public class ProdutoController {
 				return false;
 			}
 		}
-		if (txtProduto.getText() == "") {
+		if (txtProduto.getText().trim() == "") {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro no campo do nome do produto");
+			alert.setContentText("O campo precisa estar preenchido");
+
+			alert.showAndWait();
+
+			return false;
+		}
+
+		if (txtPrecoVenda.getText().trim().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de Preço de venda");
+			alert.setContentText("O campo precisa estar preenchido");
+
+			alert.showAndWait();
+
+			return false;
+		}
+
+		txtPrecoVenda.setText(txtPrecoVenda.getText().replace(',', '.'));
+		
+		if (TryParseFloat(txtPrecoVenda.getText()) == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de Preço de venda");
+			alert.setContentText("O campo só aceita números");
+
+			alert.showAndWait();
+
+			return false;
+		}
+
+		if (txtDescricao.getText().trim().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de Descrição");
+			alert.setContentText("O campo precisa estar preenchido");
+
+			alert.showAndWait();
+
+			return false;
+		}
+
+		if (txtTipoProduto.getText().trim().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de Tipo do produto");
 			alert.setContentText("O campo precisa estar preenchido");
 
 			alert.showAndWait();
@@ -96,8 +154,9 @@ public class ProdutoController {
 			id = Integer.parseInt(txtIdProduto.getText());
 		}
 
-		ProdutoVO p = new ProdutoVO(id, txtProduto.getText(), txtDescricao.getText(), txtTipoProduto.getText(),
-				qtdtotal, qtdvenda, Float.parseFloat(txtPrecoVenda.getText()));
+		ProdutoVO p = new ProdutoVO(id, txtProduto.getText(),
+				txtDescricao.getText(), txtTipoProduto.getText(), qtdtotal,
+				qtdvenda, BigDecimal.valueOf(Double.parseDouble(txtPrecoVenda.getText())));
 
 		return p;
 	}
@@ -106,9 +165,23 @@ public class ProdutoController {
 	void CadastrarProduto(ActionEvent event) {
 		if (VerificaTela("Cadastrar")) {
 			ProdutoVO p = GerarProduto();
-			prodDAO.AddProduto(p);
+			if (prodDAO.BuscarID(p) == null) {
+				prodDAO.AddProduto(p);
 
-			LimparTela(event);
+				LimparTela(event);
+
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText(null);
+				alert.setContentText("Registro bem sucedido");
+
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText(null);
+				alert.setContentText("O produto "+ p.getNomeProduto() +" já está cadastrado no banco de dados");
+
+				alert.showAndWait();
+			}
 		}
 	}
 
@@ -119,12 +192,23 @@ public class ProdutoController {
 			prodDAO.UpdateProduto(p);
 
 			LimparTelaAlterar(event);
-		}
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setContentText("Alteração bem sucedido");
+
+			alert.showAndWait();
+			} 
 	}
 
 	@FXML
 	void ApagarProduto(ActionEvent event) {
-		if (VerificaTela("Deletar")) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(null);
+		alert.setContentText("Deseja realmente deletar o registro?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
 			ProdutoVO p = GerarProduto();
 			prodDAO.DeleteProduto(p);
 
@@ -156,7 +240,7 @@ public class ProdutoController {
 
 			txtDescricao.setDisable(false);
 
-			txtProduto.setDisable(false);
+			//txtProduto.setDisable(false);
 
 			txtTipoProduto.setDisable(false);
 

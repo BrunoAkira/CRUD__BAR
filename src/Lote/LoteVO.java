@@ -1,5 +1,7 @@
 package Lote;
 
+import java.math.BigDecimal;
+
 public class LoteVO {
 
 	private int idLote;
@@ -7,7 +9,7 @@ public class LoteVO {
 	private String fornecedor;
 	private String dataCompra;
 	private int quantidade;
-	private float custoUnit;
+	private BigDecimal custoUnit;
 	
 	private String nomeProd;
 	
@@ -41,10 +43,10 @@ public class LoteVO {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	public float getCustoUnit() {
+	public BigDecimal getCustoUnit() {
 		return custoUnit;
 	}
-	public void setCustoUnit(float custoUnit) {
+	public void setCustoUnit(BigDecimal custoUnit) {
 		this.custoUnit = custoUnit;
 	}
 	
@@ -57,7 +59,7 @@ public class LoteVO {
 	public LoteVO(){}
 	
 	public LoteVO(int idLote, int idProd, String fornecedor, 
-			String dataCompra, int quantidade, float custoUnit)
+			String dataCompra, int quantidade, BigDecimal custoUnit)
 	{
 		setIdLote(idLote);
 		setIdProd(idProd);

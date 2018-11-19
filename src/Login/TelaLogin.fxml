@@ -12,10 +12,6 @@
          <font>
             <Font name="SansSerif Regular" size="12.0" />
          </font></TextField>
-      <TextField fx:id="txtSenha" layoutX="50.0" layoutY="188.0" prefHeight="25.0" prefWidth="200.0" promptText="Informe sua senha">
-         <font>
-            <Font name="SansSerif Regular" size="12.0" />
-         </font></TextField>
       <Button fx:id="btnLogin" layoutX="50.0" layoutY="243.0" mnemonicParsing="false" onAction="#AbrirPrograma" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #000;" text="Entrar" textFill="WHITE">
          <font>
             <Font name="SansSerif Regular" size="12.0" />
@@ -34,5 +30,10 @@
             <Font name="SansSerif Bold Italic" size="14.0" />
          </font>
       </Text>
+      <PasswordField fx:id="txtSenha" layoutX="50.0" layoutY="188.0" prefHeight="25.0" prefWidth="200.0" promptText="Informe sua senha">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </PasswordField>
    </children>
 </Pane>

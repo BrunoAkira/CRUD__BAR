@@ -49,7 +49,7 @@ public void UpdateItemVenda(ObservableList<ItemVendaVO> lista) {
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(
 				" Delete from ItemVenda Where IdVenda = ?;");
-		//System.out.println(lista.get(0).getIdvenda());
+		System.out.println(lista.get(0).getIdvenda());
 		preparedStatement.setInt(1, lista.get(0).getIdvenda());
 		
 		preparedStatement.execute();
@@ -107,12 +107,37 @@ public ObservableList<ItemVendaVO> BuscaItemVenda(ItemVendaVO iv) throws SQLExce
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
         	ItemVendaVO aux = new ItemVendaVO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4));
+
+        	aux.setId(rs.getInt(1));
         	aux.setNomeProduto(rs.getString(5));
-        	aux.setPrecoUnit(rs.getFloat(6));
+        	aux.setPrecoUnit(rs.getBigDecimal(6));
         	Lista.add(aux);
         }
         
         return Lista;
+
+    } catch (SQLException ex) {
+        System.err.println("Error"+ex);
+		return null;
+    }		
+} //BuscaItemVenda
+
+public ItemVendaVO BuscaItemVendaPorID(ItemVendaVO iv) throws SQLException {
+    try {        
+		PreparedStatement preparedStatement = connection.prepareStatement(
+				"select * from itemvenda WHERE ID = ?;");
+		preparedStatement.setInt(1, iv.getId());
+    	
+        ResultSet rs = preparedStatement.executeQuery();
+        ItemVendaVO aux = new ItemVendaVO();
+        if (rs.next()) {
+        	aux.setId(rs.getInt(1));
+        	aux.setIdprod(rs.getInt(2));
+        	aux.setIdvenda(rs.getInt(3));
+        	aux.setQtd(rs.getInt(4));
+        }
+        
+        return aux;
 
     } catch (SQLException ex) {
         System.err.println("Error"+ex);

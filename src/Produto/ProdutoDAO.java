@@ -1,5 +1,6 @@
 package Produto;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,9 +32,11 @@ public class ProdutoDAO {
 			preparedStatement.setString(3, p.getTipoProduto());
 			preparedStatement.setInt(4, p.getQtdTotal());
 			preparedStatement.setInt(5, p.getQtdVendida());
-			preparedStatement.setFloat(6, p.getPrecoUnit());
+			preparedStatement.setBigDecimal(6, p.getPrecoUnit());
 			
 			
+			
+			System.out.println(p.getNomeProduto());
 			preparedStatement.execute();
 			
 			connection.commit();
@@ -63,7 +66,7 @@ public void UpdateProduto(ProdutoVO p) {
 			preparedStatement.setString(3, p.getTipoProduto());
 			preparedStatement.setInt(4, p.getQtdTotal());
 			preparedStatement.setInt(5, p.getQtdVendida());
-			preparedStatement.setFloat(6, p.getPrecoUnit());
+			preparedStatement.setBigDecimal(6, p.getPrecoUnit());
 			preparedStatement.setInt(7, p.getId());
 			
 			
@@ -121,7 +124,7 @@ public ProdutoVO BuscarProduto(ProdutoVO p) {
 	        		String TipoProduto = rs.getString(4);
 	        		int QtdTotal = rs.getInt(5);
 	        		int QtdVendida = rs.getInt(6);
-	        		float PrecoUnit = rs.getFloat(7);
+	        		BigDecimal PrecoUnit = rs.getBigDecimal(7);
 
 	        		ProdutoVO aux = new ProdutoVO(id, NomeProduto, Descricao,TipoProduto, QtdTotal, QtdVendida, PrecoUnit); 
 	        		return aux;
@@ -151,7 +154,7 @@ public ProdutoVO BuscarID(ProdutoVO p) {
         		String TipoProduto = rs.getString(4);
         		int QtdTotal = rs.getInt(5);
         		int QtdVendida = rs.getInt(6);
-        		float PrecoUnit = rs.getFloat(7);
+        		BigDecimal PrecoUnit = rs.getBigDecimal(7);
         		
         		ProdutoVO aux = new ProdutoVO(id, NomeProduto, Descricao,TipoProduto, QtdTotal, QtdVendida, PrecoUnit); 
         		
@@ -177,7 +180,7 @@ public ObservableList<ProdutoVO> ConsultaTudo(String tipo, String nome) throws S
 			
         	ResultSet rs = preparedStatement.executeQuery();
         	while (rs.next()) {
-        		ProdutoVO aux = new ProdutoVO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getFloat(7));
+        		ProdutoVO aux = new ProdutoVO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBigDecimal(7));
         		Lista.add(aux);
         	}
         	

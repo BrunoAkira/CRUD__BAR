@@ -6,8 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fdc029;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fdc029;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Grafico.Top5Controller">
    <children>
-      <PieChart layoutX="60.0" layoutY="48.0" legendSide="RIGHT" prefHeight="330.0" prefWidth="481.0" title="Top 5 produtos mais vendidos " />
+      <PieChart fx:id="chart" layoutX="60.0" layoutY="48.0" legendSide="RIGHT" prefHeight="330.0" prefWidth="481.0" title="Top 5 produtos mais vendidos " />
    </children>
 </Pane>
