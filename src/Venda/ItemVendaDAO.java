@@ -25,8 +25,8 @@ public void AddItemVenda(ItemVendaVO iv) {
 			
 			preparedStatement.setInt(1, iv.getIdvenda());
 			preparedStatement.setInt(2, iv.getIdprod());
-			preparedStatement.setInt(3, iv.getQtd());			
-			
+			preparedStatement.setInt(3, iv.getQtd());
+
 			preparedStatement.execute();
 			
 			connection.commit();
@@ -49,7 +49,7 @@ public void UpdateItemVenda(ObservableList<ItemVendaVO> lista) {
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(
 				" Delete from ItemVenda Where IdVenda = ?;");
-		System.out.println(lista.get(0).getIdvenda());
+
 		preparedStatement.setInt(1, lista.get(0).getIdvenda());
 		
 		preparedStatement.execute();
@@ -101,7 +101,7 @@ public ObservableList<ItemVendaVO> BuscaItemVenda(ItemVendaVO iv) throws SQLExce
     	ObservableList<ItemVendaVO> Lista = FXCollections.observableArrayList();
         
 		PreparedStatement preparedStatement = connection.prepareStatement(
-				"select a.*, p.NomeProduto, p.PrecoUnit from itemvenda a inner join Produto p on a.idprod = p.id  WHERE Idvenda = ?;");
+				"select iv.*, p.NomeProduto, p.PrecoUnit from itemvenda iv inner join Produto p on iv.idprod = p.id  WHERE Idvenda = ?;");
 		preparedStatement.setInt(1, iv.getIdvenda());
     	
         ResultSet rs = preparedStatement.executeQuery();
@@ -109,8 +109,8 @@ public ObservableList<ItemVendaVO> BuscaItemVenda(ItemVendaVO iv) throws SQLExce
         	ItemVendaVO aux = new ItemVendaVO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4));
 
         	aux.setId(rs.getInt(1));
-        	aux.setNomeProduto(rs.getString(5));
-        	aux.setPrecoUnit(rs.getBigDecimal(6));
+        	aux.setNomeProduto(rs.getString(6));
+        	aux.setPrecoUnit(rs.getBigDecimal(7));
         	Lista.add(aux);
         }
         

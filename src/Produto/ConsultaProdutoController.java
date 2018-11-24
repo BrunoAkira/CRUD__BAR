@@ -65,7 +65,7 @@ public class ConsultaProdutoController implements Initializable{
 		TableColumn colunaPrecoUnit = new TableColumn<Object, Object>("Preço Unitário");
 		colunaPrecoUnit.setCellValueFactory(new PropertyValueFactory<>("PrecoUnit"));
 		
-		TableColumn colunaTotal = new TableColumn<Object, Object>("Total");
+		TableColumn colunaTotal = new TableColumn<Object, Object>("Quantidade no estoque");
 		colunaTotal.setCellValueFactory(new PropertyValueFactory<>("QtdTotal"));
 		
 		//, , ,TipoProduto, , QtdVendida, 

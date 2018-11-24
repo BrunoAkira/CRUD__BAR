@@ -83,13 +83,37 @@ public class ConsultaLoteController implements Initializable {
 		}
 	}
 
+	public static Integer TryParseInt(String someText) {
+		try {
+			return Integer.parseInt(someText);
+		} catch (NumberFormatException ex) {
+			return null;
+		}
+	}
+
+	public static Float TryParseFloat(String someText) {
+		try {
+			return Float.valueOf(someText);
+		} catch (NumberFormatException ex) {
+			return null;
+		}
+	}
+	
 	public void AddTable() throws SQLException {
 		tableEstoque.getItems().clear();
 		String tipo = cbTipo.getValue().toString();
-		String filtro = txtFiltro.getText();
+		String filtro = txtFiltro.getText().replace(',', '.');
 		if (tipo == "Custo Unitário") {
+			if(TryParseFloat(filtro) == null)
+			{
+				return;
+			}
 			tipo = "custoUnit";
 		} else if (tipo == "Produto") {
+			if(TryParseFloat(filtro) == null)
+			{
+				return;
+			}
 			tipo = "NomeProduto";
 		}
 		try {

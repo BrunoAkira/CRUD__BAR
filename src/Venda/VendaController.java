@@ -76,8 +76,7 @@ public class VendaController implements Initializable {
 		txtData.setValue(LocalDate.now());
 
 		TableColumn colunaNome = new TableColumn("Produto");
-		colunaNome
-				.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
+		colunaNome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
 		colunaNome.setEditable(true);
 
 		TableColumn colunaQuantidade = new TableColumn("Quantidade");
@@ -85,13 +84,11 @@ public class VendaController implements Initializable {
 		colunaQuantidade.setEditable(true);
 
 		TableColumn colunaPreco = new TableColumn("Preço Unitario");
-		colunaPreco
-				.setCellValueFactory(new PropertyValueFactory<>("PrecoUnit"));
+		colunaPreco.setCellValueFactory(new PropertyValueFactory<>("PrecoUnit"));
 		colunaPreco.setEditable(true);
 
 		tbProduto.getColumns().clear();
-		tbProduto.getColumns()
-				.addAll(colunaNome, colunaQuantidade, colunaPreco);
+		tbProduto.getColumns().addAll(colunaNome, colunaQuantidade, colunaPreco);
 		tbProduto.setEditable(true);
 		colunaNome.setPrefWidth(200);
 		colunaPreco.setPrefWidth(100);
@@ -262,8 +259,7 @@ public class VendaController implements Initializable {
 			e.printStackTrace();
 		}
 
-		BigDecimal total = BigDecimal.valueOf(Double.parseDouble(txtTotal
-				.getText()));
+		BigDecimal total = BigDecimal.valueOf(Double.parseDouble(txtTotal.getText()));
 
 		VendaVO v = new VendaVO(id, comanda, data, total);
 		for (ItemVendaVO row : tbProduto.getItems()) {
@@ -272,11 +268,10 @@ public class VendaController implements Initializable {
 
 			ProdutoVO p = new ProdutoVO();
 			p.setNomeProduto(row.getNomeProduto());
-
+			
 			iv.setIdprod(prodDAO.BuscarID(p).getId());
 			iv.setIdvenda(id);
 			iv.setQtd(row.getQtd());
-
 			v.lista.add(iv);
 		}
 
@@ -297,10 +292,19 @@ public class VendaController implements Initializable {
 			prodVO = prodDAO.BuscarID(prodVO);
 			ivVO.setIdprod(prodVO.getId());
 			ivVO.setPrecoUnit(prodVO.getPrecoUnit());
-		} else if (!txtQtd.getText().isEmpty()
-				&& TryParseInt(txtQtd.getText()) != null)
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro na quantidade do produto");
+			alert.setContentText("O campo precisa estar preenchido corretamente");
+
+			alert.showAndWait();
+
+			correto = false;
+		}
+		if (!txtQtd.getText().isEmpty() && TryParseInt(txtQtd.getText()) != null) {
 			ivVO.setQtd(Integer.parseInt(txtQtd.getText()));
-		else {
+		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro na quantidade do produto");
@@ -317,30 +321,26 @@ public class VendaController implements Initializable {
 				boolean novoproduto = true;
 
 				for (ItemVendaVO iv : tbProduto.getItems()) {
-					if (iv.getNomeProduto().trim().toUpperCase()
-							.equals(ivVO.getNomeProduto().trim().toUpperCase())) {
+					
+					if (iv.getNomeProduto().trim().toUpperCase().equals(ivVO.getNomeProduto().trim().toUpperCase())) {
+						ItemVendaDAO ivDAO = new ItemVendaDAO();
 						novoproduto = false;
-
 						if (btnRegistar.getText().equals("Registrar")
-								&& (prodVO.getQtdTotal() - (iv.getQtd() + ivVO
-										.getQtd())) >= 0) {
+								&& (prodVO.getQtdTotal() - (iv.getQtd() + ivVO.getQtd())) >= 0) {
+
 							iv.setQtd(iv.getQtd() + ivVO.getQtd());
 						}
 
-						ItemVendaDAO ivDAO = new ItemVendaDAO();
-
-						if (btnRegistar.getText().equals("Alterar")
-								&& (prodVO.getQtdTotal()
-										+ ivDAO.BuscaItemVendaPorID(iv)
-												.getQtd() - ivVO.getQtd() - iv
-											.getQtd()) >= 0) {
+						else if (btnRegistar.getText().equals("Alterar") && (prodVO.getQtdTotal()
+								+ ivDAO.BuscaItemVendaPorID(iv).getQtd() - ivVO.getQtd() - iv.getQtd()) >= 0) {
 							iv.setQtd(iv.getQtd() + ivVO.getQtd());
 						} else {
 							Alert alert = new Alert(AlertType.ERROR);
 							alert.setTitle("Erro");
 							alert.setHeaderText("Erro ao adicionar produto da tabela");
-							alert.setContentText("O produto selecionado não possui a quantidade que você deseja inserir o valor atual no estoque é de "
-									+ prodVO.getQtdTotal());
+							alert.setContentText(
+									"O produto selecionado não possui a quantidade que você deseja inserir o valor atual no estoque é de "
+											+ prodVO.getQtdTotal());
 
 							alert.showAndWait();
 						}
@@ -354,8 +354,7 @@ public class VendaController implements Initializable {
 				total = new BigDecimal("0.00");
 				for (ItemVendaVO iv : tbProduto.getItems()) {
 
-					total = total.add(iv.getPrecoUnit().multiply(
-							BigDecimal.valueOf(iv.getQtd())));
+					total = total.add(iv.getPrecoUnit().multiply(BigDecimal.valueOf(iv.getQtd())));
 				}
 				tbProduto.getColumns().get(0).setVisible(false);
 				tbProduto.getColumns().get(0).setVisible(true);
@@ -364,8 +363,9 @@ public class VendaController implements Initializable {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro");
 				alert.setHeaderText("Erro ao adicionar produto da tabela");
-				alert.setContentText("O produto selecionado não possui a quantidade que você deseja inserir o valor atual no estoque é de "
-						+ prodVO.getQtdTotal());
+				alert.setContentText(
+						"O produto selecionado não possui a quantidade que você deseja inserir o valor atual no estoque é de "
+								+ prodVO.getQtdTotal());
 
 				alert.showAndWait();
 			}
@@ -381,8 +381,7 @@ public class VendaController implements Initializable {
 
 			total = new BigDecimal("0.00");
 			for (ItemVendaVO iv : tbProduto.getItems())
-				total = total.add(iv.getPrecoUnit().multiply(
-						BigDecimal.valueOf(iv.getQtd())));
+				total = total.add(iv.getPrecoUnit().multiply(BigDecimal.valueOf(iv.getQtd())));
 			txtTotal.setText(String.format("%.2f", total).replace(',', '.'));
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -500,8 +499,7 @@ public class VendaController implements Initializable {
 		if (aux != null) {
 			txtComanda.setText(String.valueOf(aux.getComanda()));
 
-			DateTimeFormatter formatter = DateTimeFormatter
-					.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 			txtData.setValue(LocalDate.parse(aux.getData(), formatter));
 
@@ -510,8 +508,7 @@ public class VendaController implements Initializable {
 
 			for (ItemVendaVO iv : aux.lista) {
 				tbProduto.getItems().add(iv);
-				total = total.add(iv.getPrecoUnit().multiply(
-						BigDecimal.valueOf(iv.getQtd())));
+				total = total.add(iv.getPrecoUnit().multiply(BigDecimal.valueOf(iv.getQtd())));
 			}
 			txtTotal.setText(String.format("%.2f", total).replace(',', '.'));
 

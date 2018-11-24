@@ -17,7 +17,7 @@ public class ItemVendaVO {
 	private int idvenda;
 	private int idprod;
 	private int qtd;
-	
+
 	private String nomeProduto;
 	private BigDecimal precoUnit;
 	

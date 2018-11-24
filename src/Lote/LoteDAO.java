@@ -130,6 +130,7 @@ public class LoteDAO {
 			String where = " like Upper(?);";
 			if (tipo == "custoUnit" || tipo == "Quantidade") {
 				where = " = ?";
+				filtro = filtro.replace(',','.');
 				num = true;
 			}
 
@@ -139,7 +140,7 @@ public class LoteDAO {
 			if (num) {
 				if (filtro.trim().isEmpty())
 					filtro = "0";
-				preparedStatement.setInt(1, Integer.parseInt(filtro));
+				preparedStatement.setBigDecimal(1, BigDecimal.valueOf(Double.parseDouble(filtro)));
 			} else {
 				// preparedStatement.setString(1, tipo);
 				preparedStatement.setString(1, "%" + filtro + "%");

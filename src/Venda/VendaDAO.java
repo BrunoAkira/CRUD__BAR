@@ -45,7 +45,6 @@ public void AddVenda(VendaVO v) {
 			for(ItemVendaVO iv : v.lista)
 			{
 				iv.setIdvenda(id);
-		    	System.out.println(iv.getIdvenda());
 				ivDAO.AddItemVenda(iv);
 			}
 			connection.commit();
@@ -140,7 +139,7 @@ public VendaVO BuscarVenda(VendaVO v) {
         		int id = rs.getInt(1); 
         		int comanda = rs.getInt(2); 
         		String Data = rs.getString(3);
-        		BigDecimal PrecoTotal = rs.getBigDecimal(4);
+        		BigDecimal PrecoTotal = BigDecimal.valueOf(rs.getDouble(4));
 
         		VendaVO aux = new VendaVO(id, comanda, Data,PrecoTotal); 
         		ItemVendaVO iv = new ItemVendaVO();
@@ -166,6 +165,7 @@ public ObservableList<VendaVO> ConsultarTudo(String filtro, String tipo) {
 		if (tipo == "PrecoTotal" || tipo == "Comanda")
 		{
 			where = " = ?;"; 
+			filtro = filtro.replace(',','.');
 			num = true;
 		}
 		
@@ -176,7 +176,7 @@ public ObservableList<VendaVO> ConsultarTudo(String filtro, String tipo) {
 		{
 			if(filtro.trim().isEmpty())
 				filtro = "0";
-			preparedStatement.setInt(1,Integer.parseInt(filtro));
+			preparedStatement.setBigDecimal(1,BigDecimal.valueOf(Double.parseDouble(filtro)));
 		}
 		else
 		{

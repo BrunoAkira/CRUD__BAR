@@ -1,11 +1,11 @@
+C:\Users\Programador\Desktop\CRUD__BAR-master
+----------------------------CRIA BANCO DE DADOS------------------------------------------------------
 create database Bar
 
 use Bar;
+-----------------------------------------------------------------------------------------------------
 
-set dateformat dmy;
-insert into Usuario(Nome,DataNascimento,DataAdmissao,Cargo,RG,Sexo,Login,Senha)
-  values('João','21/05/1998','15/06/2018','Faxineiro','38.534.712-1','M','Login','Senha');
-  select * from Usuario
+----------------------------------------CRIA AS TABELAS----------------------------------------------
 create table Produto(
 ID int primary key identity,
 NomeProduto varchar(50) unique not null,
@@ -39,8 +39,6 @@ Login varchar(50) not null,
 Senha varchar(50) not null
 )
 
-
-
 create table Venda (
 Id int primary key identity,
 Comanda int not null,
@@ -48,14 +46,21 @@ Data varchar(50),
 PrecoTotal float,
 )
 
-
 create table ItemVenda(
 Id int primary key identity,
 idvenda int foreign key references venda(Id),
-idprod int foreign key references produto(Id), 
-qtd int
+idprod int, 
+qtd int,
+Preco float
 );
+------------------------INSERE USUARIO PRA PODER LOGAR--------------------------------------------
+set dateformat dmy;
+insert into Usuario(Nome,DataNascimento,DataAdmissao,Cargo,RG,Sexo,Login,Senha)
+  values('João','21/05/1998','15/06/2018','Faxineiro','38.534.712-1','M','Login','Senha');
 
+--------------------------------------------------------------------------------------------------
+
+------------------------CRIA AS TRIGGERS----------------------------------------------------------
 create trigger trg_onInsertLote on Lote
 for INSERT
 AS
@@ -64,7 +69,7 @@ AS
 	Where ID = (select IdProd from inserted);
 	
 
-
+----------------------------------------------------
 create trigger trg_onDeleteLote on Lote
 for Delete
 AS
@@ -78,23 +83,23 @@ AS
 	Update Produto 
 	Set QtdTotal = QtdTotal + (select Quantidade from inserted) - (select Quantidade from deleted)
 	Where ID = (select IdProd from inserted);
-	
-	
-	
-	
-alter trigger trg_onInsertItemVenda on ItemVenda
+
+------------------------------------------------		
+create trigger trg_onInsertItemVenda on ItemVenda
 for INSERT
 AS
+
+DECLARE @idins as int
 DECLARE @qtdins as int
 DECLARE @idProdins as int
 
 DECLARE ins_cursor CURSOR FOR
-    SELECT d.idprod,d.qtd
+    SELECT d.id,d.idprod,d.qtd
     FROM inserted d
 
 OPEN ins_cursor;
 
-FETCH NEXT FROM ins_cursor INTO @idProdins,@qtdins;
+FETCH NEXT FROM ins_cursor INTO @idins,@idProdins,@qtdins;
 
 WHILE @@FETCH_STATUS=0
 BEGIN
@@ -102,15 +107,16 @@ BEGIN
 	Set QtdTotal = QtdTotal - @qtdins,
 	QtdVendida = QtdVendida + @qtdins
 	Where ID = @idProdins;
-FETCH NEXT FROM ins_cursor INTO @idProdins,@qtdins;
+	Update ItemVenda
+	Set Preco = (Select PrecoUnit from produto where id = @idProdins) 
+	Where ID = @idins;
+FETCH NEXT FROM ins_cursor INTO @idins,@idProdins,@qtdins;
 END
 CLOSE ins_cursor
 DEALLOCATE ins_cursor
+------------------------------------------------------------------
 
-	
-
-
-alter trigger trg_onDeleteItemVenda on ItemVenda
+create trigger trg_onDeleteItemVenda on ItemVenda
 for Delete
 AS
 DECLARE @qtddel as int
@@ -134,9 +140,9 @@ FETCH NEXT FROM del_cursor INTO @idProddel,@qtddel;
 END
 CLOSE del_cursor
 DEALLOCATE del_cursor
-	
+-----------------------------------------------------------------------	
 
-alter trigger trg_onUpdateItemVenda on ItemVenda
+create trigger trg_onUpdateItemVenda on ItemVenda
 for Update
 AS
 DECLARE @qtdins as int
@@ -165,22 +171,13 @@ END
 CLOSE upd_cursor
 DEALLOCATE upd_cursor
 	
-	
+-----------------------------------------------------------------------------	
 
-select * from produto
-
-select * from lote
-select * from ItemVenda
-
-delete from lote
-delete from produto
-delete from Venda
-delete from ItemVenda
-insert into lote
-values(12,'Russia','18/09/2018',1,12);
+insert into Lote
+values(12,'Russia','18/09/2018',15,12);
 
 insert into produto
 values('Coca Cola','Gerante','Refri',0,0,12.05);
 
 
-select top 5 nomeproduto,qtdVendida from Produto where qtdVendida <> 0
+

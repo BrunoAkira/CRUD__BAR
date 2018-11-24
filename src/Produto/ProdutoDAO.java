@@ -34,9 +34,6 @@ public class ProdutoDAO {
 			preparedStatement.setInt(5, p.getQtdVendida());
 			preparedStatement.setBigDecimal(6, p.getPrecoUnit());
 			
-			
-			
-			System.out.println(p.getNomeProduto());
 			preparedStatement.execute();
 			
 			connection.commit();
@@ -155,7 +152,6 @@ public ProdutoVO BuscarID(ProdutoVO p) {
         		int QtdTotal = rs.getInt(5);
         		int QtdVendida = rs.getInt(6);
         		BigDecimal PrecoUnit = rs.getBigDecimal(7);
-        		
         		ProdutoVO aux = new ProdutoVO(id, NomeProduto, Descricao,TipoProduto, QtdTotal, QtdVendida, PrecoUnit); 
         		
         		return aux;
@@ -175,7 +171,7 @@ public ObservableList<ProdutoVO> ConsultaTudo(String tipo, String nome) throws S
 			PreparedStatement preparedStatement = connection.prepareStatement( "SELECT * FROM Produto "
 											+ "where nomeproduto like Upper(?) AND tipoproduto like Upper(?);" );
         
-			preparedStatement.setString(1, "%"+nome+"%");
+			preparedStatement.setString(1, "%"+nome.replace(',','.')+"%");
 			preparedStatement.setString(2, "%"+tipo+"%");
 			
         	ResultSet rs = preparedStatement.executeQuery();

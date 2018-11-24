@@ -64,12 +64,29 @@ public class ConsultaVendaController implements Initializable{
 			
 	}
 	
+	public static Float TryParseFloat(String someText) {
+		try {
+			return Float.valueOf(someText);
+		} catch (NumberFormatException ex) {
+			return null;
+		}
+	}
+		
 	@FXML
 	public void AddTable () throws SQLException {
 		tbVenda.getItems().clear();
 		String tipo = cbTipo.getValue().toString();
-		String filtro = txtFiltro.getText();
+		String filtro = txtFiltro.getText().replace(',', '.');
 
+		
+		if(tipo == "Comanda" || tipo == "PrecoTotal")
+		{
+			if(TryParseFloat(filtro) == null)
+			{				
+				return;
+			}
+			filtro = filtro.replace(',', '.');
+		}
 		ObservableList<VendaVO> ul = FXCollections.observableArrayList();
 		ul = vDAO.ConsultarTudo(filtro, tipo);
 		for (VendaVO p : ul) {

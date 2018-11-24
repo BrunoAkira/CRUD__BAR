@@ -124,9 +124,9 @@ public class PadraoController {
     @FXML
     void AbrirTelaGrafico(ActionEvent event) {
     	try {
-    		btnCadastro.setText("Lucro mensal");
+    		btnCadastro.setText("Renda mensal");
 			btnAltera.setText("Estoque");
-			btnApaga.setText("Top 5 produtos");
+			btnApaga.setText("Produtos mais vendidos");
 			btnConsulta.setText("");
 			tela = 'G';
 			BorderPane.setCenter(FXMLLoader.load(getClass().getClassLoader().getResource("Grafico/Top5.fxml")));
@@ -191,7 +191,7 @@ public class PadraoController {
     	else if(tela == 'G')
     	{
     		try {
-				BorderPane.setCenter(FXMLLoader.load(getClass().getClassLoader().getResource("Grafico/LucroMensal.fxml")));
+				BorderPane.setCenter(FXMLLoader.load(getClass().getClassLoader().getResource("Grafico/RendaMensal.fxml")));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -245,6 +245,13 @@ public class PadraoController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+    		
+    		//fetchDataFromDataBase: recebe a string com a query e retorna o resultSet com os resultados
+    		//printToCsv: recebe o resultSet retornado pelo método ''fetchDataFromDataBase'', cria o arquivo excel, escreve nele e abre
+    		//a chamada na classe Controller fica assim: VendaDao.printToCsv(VendaDao.fetchDataFromDatabase());
+
+
+    		
     	}
     }
     
@@ -344,5 +351,5 @@ public class PadraoController {
 		tela.close();
 		
 		
-    }
+    }	
 }
