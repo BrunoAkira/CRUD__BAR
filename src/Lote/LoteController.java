@@ -144,6 +144,18 @@ public class LoteController implements Initializable {
 
 			return false;
 		}
+		
+		if (TryParseInt(txtQtd.getText()) < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de quantidade comprada");
+			alert.setContentText("O campo só aceita números positivos");
+
+			alert.showAndWait();
+
+			return false;
+		}
+		
 		if (txtFornecedor.getText().trim().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
@@ -155,8 +167,6 @@ public class LoteController implements Initializable {
 			return false;
 		}
 
-		System.out.println(LocalDate.now());
-		System.out.println(txtData.getValue());
 		
 		if (txtData.getValue() == null) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -196,7 +206,18 @@ public class LoteController implements Initializable {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro no campo de preço de compra");
-			alert.setContentText("O campo só aceita números");
+			alert.setContentText("O campo só aceita números, respeite a quantidade maxima de 9 digitos");
+
+			alert.showAndWait();
+
+			return false;
+		}
+		
+		if (TryParseFloat(txtCustounit.getText()) < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de preço de compra");
+			alert.setContentText("O campo só aceita números positivos");
 
 			alert.showAndWait();
 
@@ -242,6 +263,27 @@ public class LoteController implements Initializable {
 	@FXML
 	void BuscarId(ActionEvent event) {
 		LoteVO l = new LoteVO();
+		if(TryParseInt(txtIdLote.getText()) == null)
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do lote");
+			alert.setContentText("O campo só aceita números inteiros, respeite a quantidade maxima de 9 digitos");
+
+			alert.showAndWait();
+			return;
+		}
+		if(TryParseInt(txtIdLote.getText()) < 0)
+		{
+			
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do produto");
+			alert.setContentText("O campo só aceita números positivos");
+
+			alert.showAndWait();
+			return;
+		} 
 		l.setIdLote(Integer.parseInt(txtIdLote.getText()));
 		LoteVO aux = lotDAO.BuscarLote(l);
 
@@ -249,7 +291,7 @@ public class LoteController implements Initializable {
 			txtFornecedor.setText(aux.getFornecedor());
 
 			txtQtd.setText(String.valueOf(aux.getQuantidade()));
-
+			
 			txtIdLote.setText(String.valueOf(aux.getIdLote()));
 
 			txtCustounit.setText(String.valueOf(aux.getCustoUnit()));

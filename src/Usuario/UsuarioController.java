@@ -98,7 +98,7 @@ public class UsuarioController implements Initializable{
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setTitle("Erro");
     			alert.setHeaderText("Erro no campo de código do Usuario");
-    			alert.setContentText("O campo só aceita números");
+    			alert.setContentText("O campo só aceita números, respeite a quantidade maxima de 9 digitos");
 
     			alert.showAndWait();
     		
@@ -146,12 +146,13 @@ public class UsuarioController implements Initializable{
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro no campo do RG");
-			alert.setContentText("O campo só aceita números 	EX:785642124");
+			alert.setContentText("O campo só aceita números 	EX:385347121");
 
 			alert.showAndWait();
 		
 			return false;
 		}
+		
 		
 		if(txtUsuario.getText().trim().isEmpty())
 		{
@@ -354,6 +355,30 @@ public class UsuarioController implements Initializable{
     
     @FXML
     void BuscarId(ActionEvent event) {
+    	
+		if(TryParseInt(txtIdFuncionario.getText()) == null )
+		{
+			
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do produto");
+			alert.setContentText("O campo só aceita números inteiros");
+
+			alert.showAndWait();
+			return;
+		}
+		if(TryParseInt(txtIdFuncionario.getText()) < 0)
+		{
+			
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do produto");
+			alert.setContentText("O campo só aceita números positivos");
+
+			alert.showAndWait();
+			return;
+		} 
+		
     	UsuarioVO aux = usuaDAO.BuscarUsuario(Integer.parseInt(txtIdFuncionario.getText()));
     	if(aux != null)
     	{

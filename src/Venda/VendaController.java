@@ -163,12 +163,25 @@ public class VendaController implements Initializable {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro no campo do Número da comanda");
-			alert.setContentText("O campo só aceita números");
+			alert.setContentText("O campo só aceita números, respeite a quantidade maxima de 9 digitos");
 
 			alert.showAndWait();
 
 			return false;
 		}
+		
+		if (TryParseInt(txtComanda.getText()) < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo do Número da comanda");
+			alert.setContentText("O campo só aceita números positivos");
+
+			alert.showAndWait();
+
+			return false;
+		}
+		
+
 
 		if (txtData.getValue() == null) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -242,6 +255,7 @@ public class VendaController implements Initializable {
 				e.printStackTrace();
 			}
 		} else {
+			
 			id = Integer.parseInt(txtIdVenda.getText());
 		}
 
@@ -475,6 +489,8 @@ public class VendaController implements Initializable {
 		cbProduto.setDisable(true);
 
 		txtTotal.setDisable(true);
+		
+		txtData.setDisable(true);
 
 		txtIdVenda.setDisable(false);
 
@@ -494,6 +510,28 @@ public class VendaController implements Initializable {
 	@FXML
 	void BuscarId(ActionEvent event) {
 		VendaVO v = new VendaVO();
+		if(TryParseInt(txtIdVenda.getText()) == null)
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do lote");
+			alert.setContentText("O campo só aceita números inteiros");
+
+			alert.showAndWait();
+			return;
+		}
+		
+		if(TryParseInt(txtIdVenda.getText()) < 0)
+		{
+			
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do produto");
+			alert.setContentText("O campo só aceita números positivos");
+
+			alert.showAndWait();
+			return;
+		} 
 		v.setId(Integer.parseInt(txtIdVenda.getText()));
 		VendaVO aux = vDAO.BuscarVenda(v);
 		if (aux != null) {

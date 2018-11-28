@@ -110,10 +110,6 @@ public class ConsultaLoteController implements Initializable {
 			}
 			tipo = "custoUnit";
 		} else if (tipo == "Produto") {
-			if(TryParseFloat(filtro) == null)
-			{
-				return;
-			}
 			tipo = "NomeProduto";
 		}
 		try {

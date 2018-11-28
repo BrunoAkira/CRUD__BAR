@@ -78,7 +78,7 @@ public class ProdutoController {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro");
 				alert.setHeaderText("Erro no campo de código do Produto");
-				alert.setContentText("O campo só aceita números");
+				alert.setContentText("O campo só aceita números, respeite a quantidade maxima de 9 digitos");
 
 				alert.showAndWait();
 
@@ -86,6 +86,17 @@ public class ProdutoController {
 			}
 		}
 		if (txtProduto.getText().trim() == "") {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo do nome do produto");
+			alert.setContentText("O campo precisa estar preenchido");
+
+			alert.showAndWait();
+
+			return false;
+		}
+		
+		if (txtProduto.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro no campo do nome do produto");
@@ -113,7 +124,18 @@ public class ProdutoController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erro");
 			alert.setHeaderText("Erro no campo de Preço de venda");
-			alert.setContentText("O campo só aceita números");
+			alert.setContentText("O campo só aceita números, respeite a quantidade maxima de 9 digitos");
+
+			alert.showAndWait();
+
+			return false;
+		}
+		
+		if (TryParseFloat(txtPrecoVenda.getText()) < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de Preço de venda");
+			alert.setContentText("O campo só aceita números positivos");
 
 			alert.showAndWait();
 
@@ -220,6 +242,28 @@ public class ProdutoController {
 	void BuscarId(ActionEvent event) {
 
 		ProdutoVO p = new ProdutoVO();
+		if(TryParseInt(txtIdProduto.getText()) == null )
+		{
+			
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do produto");
+			alert.setContentText("O campo só aceita números inteiros");
+
+			alert.showAndWait();
+			return;
+		}
+		if(TryParseInt(txtIdProduto.getText()) < 0)
+		{
+			
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro no campo de código do produto");
+			alert.setContentText("O campo só aceita números positivos");
+
+			alert.showAndWait();
+			return;
+		} 
 		p.setId(Integer.parseInt(txtIdProduto.getText()));
 		ProdutoVO aux = prodDAO.BuscarProduto(p);
 

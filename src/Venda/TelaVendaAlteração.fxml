@@ -53,7 +53,7 @@
             <TextField fx:id="txtComanda" disable="true" layoutX="95.0" layoutY="133.0" />
             <Label disable="true" layoutX="20.0" layoutY="173.0" text="Data : " />
             <Label layoutX="36.0" layoutY="182.0" />
-            <TextField fx:id="txtTotal" disable="true" layoutX="95.0" layoutY="214.0" />
+            <TextField fx:id="txtTotal" disable="true" editable="false" layoutX="95.0" layoutY="214.0" />
             <Label disable="true" layoutX="23.0" layoutY="214.0" text="Total : " />
             <Button fx:id="btnRegistar" disable="true" layoutX="40.0" layoutY="291.0" mnemonicParsing="false" onAction="#AlterarVenda" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #000;" text="Alterar" textFill="WHITE">
                <font>
@@ -72,7 +72,7 @@
                <font>
                   <Font name="SansSerif Regular" size="12.0" />
                </font></Button>
-            <DatePicker fx:id="txtData" layoutX="95.0" layoutY="173.0" prefHeight="25.0" prefWidth="149.0" />
+            <DatePicker fx:id="txtData" disable="true" layoutX="95.0" layoutY="173.0" prefHeight="25.0" prefWidth="149.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

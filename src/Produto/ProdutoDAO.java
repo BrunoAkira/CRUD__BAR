@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import Padrao.DbUtil;
 
 
@@ -100,7 +102,12 @@ public void DeleteProduto(ProdutoVO p) {
 			connection.commit();
 		
 		} catch (Exception e) {
-			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Erro ao deletar um produto");
+			alert.setContentText("Delete os lotes desse produto primeiro");
+
+			alert.showAndWait();
 		}
 	
 	}//DeleteProduto
